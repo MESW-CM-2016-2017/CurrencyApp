@@ -17,6 +17,7 @@ namespace CurrencyApp.Views
             InitializeComponent();
             //var CurrencyAppItem = (Wallet)BindingContext;
             setPicker();
+            setInput();
             try
             {
                 oldQuantity = currencyAppItem.Quantity;
@@ -33,6 +34,20 @@ namespace CurrencyApp.Views
                 var ola = "";
             }
 
+        }
+
+
+        private void setInput()
+        {
+            InputQuantity.TextChanged += (sender, args) =>
+            {
+                if (Picker.SelectedIndex != -1)
+                {
+                    string toSymbol = (string)Picker.SelectedItem;
+                    if (toSymbol != null && toSymbol.Length == 3)
+                        refreshLabel(toSymbol, Wallet.Quantity);
+                }
+            };
         }
 
         private void setPicker()
@@ -60,8 +75,11 @@ namespace CurrencyApp.Views
             currencyAppItem.Quantity = oldQuantity;
             string toSymbol = (string)Picker.SelectedItem;
             // convert
-            await APIHandler.Convert(currencyAppItem.Symbol, toSymbol, currencyAppItem, selectedQuantity);
-            await Navigation.PopToRootAsync();
+            if (selectedQuantity > 0)
+            {
+                await APIHandler.Convert(currencyAppItem.Symbol, toSymbol, currencyAppItem, selectedQuantity);
+                await Navigation.PopToRootAsync();
+            }
         }
 
         async void OnRefresh(object sender, EventArgs e)
