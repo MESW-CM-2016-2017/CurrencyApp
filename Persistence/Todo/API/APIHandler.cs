@@ -25,7 +25,7 @@ namespace CurrencyApp.API
         {
             CurrencyDTO to = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolTo + "=X");
             CurrencyDTO from = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolFrom + "=X");
-            if (to != null && from != null)
+            if (to != null && from != null && to.Symbol.CompareTo(from.Symbol) != 0)
             {
                 Double convertedQuantity = new APIHandler().Convert(from, to, toConvertoQuantity);
                 Double diff = wallet.Quantity - toConvertoQuantity;
