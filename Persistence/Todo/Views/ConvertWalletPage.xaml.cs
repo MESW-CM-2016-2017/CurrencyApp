@@ -15,14 +15,22 @@ namespace CurrencyApp.Views
     {
         private Picker Currency;
         private Button Button;
+        private StackLayout Chart;
+
+        private List<Wallet> Wallets;
 
         public ConvertWalletPage(List<Wallet> listOfWallets)
         {
             //InitializeComponent();
             createPicker();
             createButton();
-            
+            Wallets = listOfWallets;
+            Chart = BarChartFactory.createChart(listOfWallets);
+            createPage();
+        }
 
+        private void createPage()
+        {
             var contentView = new ContentView
             {
                 Content = new StackLayout
@@ -31,7 +39,7 @@ namespace CurrencyApp.Views
                     Children = {
                      Currency,
                      Button,
-                     BarChartFactory.createChart(listOfWallets)
+                     Chart
                  }
                 }
             };
@@ -39,14 +47,40 @@ namespace CurrencyApp.Views
             Content = contentView;
         }
 
+        private async void refresh(String selectedSymbol)
+        {
+            List<Wallet> list = new List<Wallet>();
+            foreach(Wallet w in Wallets)
+            {
+                Double qtd = await APIHandler.ConvertWithoutSaving(selectedSymbol, w, w.Quantity);
+                list.Add(new Wallet(qtd, w.Symbol));
+            }
+            Chart = BarChartFactory.createChart(list);
+            try
+            {
+                createPage();
+            }catch(Exception e)
+            {
+                //
+            }
+        }
+
         private void createPicker()
         {
             Currency = new Picker { Title = "Choose" };
             foreach (String symbol in CurrencyDTO.top10Currencies)
             {
-                if (Currency.SelectedIndex != 0) Currency.SelectedIndex = 0;
+                //if (Currency.SelectedIndex != 0) Currency.SelectedIndex = 0;
                 Currency.Items.Add(symbol);
             }
+            Currency.SelectedIndexChanged += (sender, args) =>
+            {
+                if (Currency.SelectedIndex != -1)
+                {
+                    string toSymbol = (string)Currency.SelectedItem;
+                    refresh(toSymbol);
+                }
+            };
         }
 
         private void createButton()

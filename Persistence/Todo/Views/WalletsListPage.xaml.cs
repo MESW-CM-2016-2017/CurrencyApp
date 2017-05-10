@@ -77,21 +77,12 @@ namespace CurrencyApp
             });
 
         }
-
-
-        async void OnPieChartClicked(object sender, EventArgs e)
-        {
-
-        }
-
+      
         async void OnConvertWallet(object sender, EventArgs e)
         {
-
-
             await Navigation.PushAsync(new ConvertWalletPage(listOfWallets)
             {
             });
-
         }
 
     }

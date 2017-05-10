@@ -21,7 +21,7 @@ namespace CurrencyApp.API
             return client.Get(API_URL_ALL, cb);
         }
 
-        public static async Task<int> Convert(String symbolFrom, String symbolTo,Wallet wallet, Double toConvertoQuantity)
+        public static async Task<Double> Convert(String symbolFrom, String symbolTo,Wallet wallet, Double toConvertoQuantity)
         {
             CurrencyDTO to = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolTo + "=X");
             CurrencyDTO from = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolFrom + "=X");
@@ -38,7 +38,22 @@ namespace CurrencyApp.API
                 {
                     await App.Database.DeleteItemAsync(wallet);
                 }
-                return await App.Database.SaveOrUpdateItemAsync(new Wallet(convertedQuantity, symbolTo));
+                await App.Database.SaveOrUpdateItemAsync(new Wallet(convertedQuantity, symbolTo));
+                return convertedQuantity;
+            }
+            return -1;
+        }
+
+        public static async Task<Double> ConvertWithoutSaving(String symbolTo, Wallet wallet, Double toConvertoQuantity)
+        {
+            CurrencyDTO to = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolTo + "=X");
+            CurrencyDTO from = await App.DatabaseCurrencies.GetLastUpdateTimeString(wallet.Symbol + "=X");
+            if (to != null && from != null)
+            {
+                Double convertedQuantity = new APIHandler().Convert(from, to, toConvertoQuantity);
+                Double diff = wallet.Quantity - toConvertoQuantity;
+                wallet.Quantity = wallet.Quantity - diff;                
+                return convertedQuantity;
             }
             return -1;
         }

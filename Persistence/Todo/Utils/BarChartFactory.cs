@@ -1,9 +1,6 @@
 ﻿using CurrencyApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace CurrencyApp.Utils
@@ -11,11 +8,9 @@ namespace CurrencyApp.Utils
     public class BarChartFactory
     {
 
-        private static Double MaxWidth = 80;
+        private static Double MaxWidth = 60;
         private static Double MaxHeight = 250;
-
         private static Double maxNumber = 0;
-
 
         public static StackLayout createChart(List<Wallet> listOfWallets)
         {
@@ -27,7 +22,21 @@ namespace CurrencyApp.Utils
                 //BackgroundColor = Color.GhostWhite
             };
 
+            maxNumber = 0;
             findMax(listOfWallets);
+
+            if (listOfWallets.Capacity >= 9)
+            {
+                MaxWidth = 25;
+            }else
+            if (listOfWallets.Capacity >= 5)
+            {
+                MaxWidth = 40;
+            }
+            else
+            {
+                MaxWidth = 60;
+            }
 
             foreach (Wallet wallet in listOfWallets)
             {

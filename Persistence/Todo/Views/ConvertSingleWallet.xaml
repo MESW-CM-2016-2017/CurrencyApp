@@ -16,5 +16,6 @@
         <Label Text="Convert to: "/>
         <Picker x:Name="Picker" HorizontalOptions="FillAndExpand"/>
         <Button Text="Convert" Clicked="OnConvertClicked" />
+        <Label x:Name="FinalQTD" Text=""/>
     </StackLayout>
 </ContentPage>
