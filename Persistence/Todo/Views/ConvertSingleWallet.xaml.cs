@@ -10,26 +10,47 @@ namespace CurrencyApp.Views
     public partial class ConvertSingleWallet : ContentPage
     {
         private Double oldQuantity;
+        private Wallet Wallet;
 
         public ConvertSingleWallet(Wallet currencyAppItem)
         {
             InitializeComponent();
             //var CurrencyAppItem = (Wallet)BindingContext;
+            setPicker();
             try
             {
                 oldQuantity = currencyAppItem.Quantity;
-
+                Wallet = currencyAppItem;
                 foreach (String symbol in CurrencyDTO.top10Currencies)
                 {
-                    if (Picker.SelectedIndex != 0) Picker.SelectedIndex = 0;
+                    //if (Picker.SelectedIndex != 0) Picker.SelectedIndex = 0;
                     if (!currencyAppItem.Symbol.Contains(symbol)) Picker.Items.Add(symbol);
                 }
+
             }
             catch (Exception e)
             {
                 var ola = "";
             }
 
+        }
+
+        private void setPicker()
+        {
+            Picker.SelectedIndexChanged += (sender, args) =>
+            {
+                if (Picker.SelectedIndex != -1)
+                {
+                    string toSymbol = (string)Picker.SelectedItem;
+                    refreshLabel(toSymbol, Wallet.Quantity);
+                }
+            };
+        }
+
+        private async void refreshLabel(String toSymbol, Double quantity)
+        {
+            Double convertedQuantity = await APIHandler.ConvertWithoutSaving(toSymbol, Wallet, quantity);
+            FinalQTD.Text = convertedQuantity.ToString() + " " + toSymbol;
         }
 
         async void OnConvertClicked(object sender, EventArgs e)

@@ -25,11 +25,11 @@ namespace CurrencyApp.API
         {
             CurrencyDTO to = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolTo + "=X");
             CurrencyDTO from = await App.DatabaseCurrencies.GetLastUpdateTimeString(symbolFrom + "=X");
-            if (to != null && from != null && to.Symbol.CompareTo(from.Symbol) != 0)
+            if (to != null && from != null)
             {
                 Double convertedQuantity = new APIHandler().Convert(from, to, toConvertoQuantity);
                 Double diff = wallet.Quantity - toConvertoQuantity;
-                wallet.Quantity = wallet.Quantity - diff;
+                wallet.Quantity = diff;
                 if (diff >= 0.1)
                 {
                     await App.Database.SaveItemAsync(wallet);
@@ -53,7 +53,7 @@ namespace CurrencyApp.API
                 Double convertedQuantity = new APIHandler().Convert(from, to, toConvertoQuantity);
                 Double diff = wallet.Quantity - toConvertoQuantity;
                 wallet.Quantity = wallet.Quantity - diff;                
-                return convertedQuantity;
+                return Math.Round(convertedQuantity, 2);
             }
             return -1;
         }

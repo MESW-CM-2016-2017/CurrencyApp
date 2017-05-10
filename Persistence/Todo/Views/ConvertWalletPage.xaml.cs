@@ -101,6 +101,7 @@ namespace CurrencyApp.Views
                 List<Wallet> wallets = await App.Database.GetItemsAsync();
                 foreach (Wallet wallet in wallets)
                 {
+                    if(wallet.Symbol.CompareTo(toSymbol) != 0)
                     await APIHandler.Convert(wallet.Symbol, toSymbol, wallet, wallet.Quantity);
                 }
             }

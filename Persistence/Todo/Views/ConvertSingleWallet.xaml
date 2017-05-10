@@ -10,12 +10,13 @@
         </ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout Margin="20" VerticalOptions="StartAndExpand">
-        <Label Text="Value" />
-        <Entry Text="{Binding Quantity}" Keyboard="Numeric" />
-        <Label Text="{Binding Symbol}"/>
-        <Label Text="Convert to: "/>
+        <Label Text="Value" FontSize="Medium"/>
+        <Entry Text="{Binding Quantity}" Keyboard="Numeric" FontSize="Medium"/>
+        <Label Text="{Binding Symbol}" FontSize="Medium"/>
+        <Label Text="Convert to: " FontSize="Medium"/>
         <Picker x:Name="Picker" HorizontalOptions="FillAndExpand"/>
-        <Button Text="Convert" Clicked="OnConvertClicked" />
-        <Label x:Name="FinalQTD" Text=""/>
+        <Label Text="Conversion:" FontSize="Medium"/>
+        <Label x:Name="FinalQTD" Text="Preview" FontSize="Medium"/>
+        <Button Text="Convert" Clicked="OnConvertClicked" VerticalOptions="End" />
     </StackLayout>
 </ContentPage>
