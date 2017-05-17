@@ -2,10 +2,10 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 using Java.Lang;
-using CurrencyApp;
+using Janus;
 
 [assembly: Dependency(typeof(TextToSpeech_Android))]
-namespace CurrencyApp
+namespace Janus
 {
 	public class TextToSpeech_Android : Object, ITextToSpeech, TextToSpeech.IOnInitListener
 	{

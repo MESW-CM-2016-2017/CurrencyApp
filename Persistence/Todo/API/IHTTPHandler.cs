@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CurrencyApp.API
+namespace Janus.API
 {
     interface IHTTPHandler
     {

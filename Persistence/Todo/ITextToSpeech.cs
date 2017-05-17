@@ -1,4 +1,4 @@
-﻿namespace CurrencyApp
+﻿namespace Janus
 {
 	public interface ITextToSpeech
 	{

@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
-using CurrencyApp.Models;
+using Janus.Models;
 
-namespace CurrencyApp
+namespace Janus
 {
     public class WalletDatabase
     {

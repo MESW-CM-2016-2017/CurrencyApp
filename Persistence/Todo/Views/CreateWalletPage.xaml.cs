@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using CurrencyApp.Models;
+using Janus.Models;
 using Xamarin.Forms;
 
-namespace CurrencyApp
+namespace Janus
 {
-	public partial class CurrencyAppItemPage : ContentPage
+	public partial class JanusItemPage : ContentPage
 	{
-		public CurrencyAppItemPage()
+		public JanusItemPage()
 		{
 			InitializeComponent();
             foreach (String symbol in CurrencyDTO.top10Currencies)
@@ -20,14 +20,14 @@ namespace CurrencyApp
 		async void OnSaveClicked(object sender, EventArgs e)
 		{
             bool entered = false;
-            var CurrencyAppItem = (Wallet)BindingContext;
+            var JanusItem = (Wallet)BindingContext;
             List<Wallet> wallets = await App.Database.GetItemsAsync();
             Wallet wallet = new Wallet();
             if (wallets.Count > 0)
             {
                 foreach (Wallet w in wallets)
                 {
-                    if (w.Symbol.Equals(CurrencyAppItem.Symbol))
+                    if (w.Symbol.Equals(JanusItem.Symbol))
                     {
                         wallet = w;
                         entered = true;
@@ -36,18 +36,18 @@ namespace CurrencyApp
                 }
                 if (entered == true)
                 {
-                    wallet.Quantity = wallet.Quantity + CurrencyAppItem.Quantity;
+                    wallet.Quantity = wallet.Quantity + JanusItem.Quantity;
                     await App.Database.SaveItemAsync(wallet);
                 }
                 else
                 {
-                    await App.Database.SaveItemAsync(CurrencyAppItem);
+                    await App.Database.SaveItemAsync(JanusItem);
                 }
                 
             }
             else
             {
-                await App.Database.SaveItemAsync(CurrencyAppItem);
+                await App.Database.SaveItemAsync(JanusItem);
             }
             
 			await Navigation.PopAsync();
@@ -60,8 +60,8 @@ namespace CurrencyApp
 
 		void OnSpeakClicked(object sender, EventArgs e)
 		{
-			var CurrencyAppItem = (Wallet)BindingContext;
-			DependencyService.Get<ITextToSpeech>().Speak(CurrencyAppItem.Quantity + " " + CurrencyAppItem.Symbol);
+			var JanusItem = (Wallet)BindingContext;
+			DependencyService.Get<ITextToSpeech>().Speak(JanusItem.Quantity + " " + JanusItem.Symbol);
 		}
 	}
 }

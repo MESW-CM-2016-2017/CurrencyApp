@@ -2,9 +2,9 @@
 using Android.OS;
 using Android.Content.PM;
 
-namespace CurrencyApp
+namespace Janus
 {
-	[Activity(Label = "CurrencyApp", Icon = "@drawable/icon", MainLauncher = true,
+	[Activity(Label = "Janus", Icon = "@drawable/icon", MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
 	public class MainActivity :
 	global::Xamarin.Forms.Platform.Android.FormsApplicationActivity // superclass new in 1.3

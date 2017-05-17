@@ -1,8 +1,8 @@
 ﻿<Application
-    x:Class="CurrencyApp.UWP.App"
+    x:Class="Janus.UWP.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:CurrencyApp.UWP"
+    xmlns:local="using:Janus.UWP"
     RequestedTheme="Light">
 
 </Application>

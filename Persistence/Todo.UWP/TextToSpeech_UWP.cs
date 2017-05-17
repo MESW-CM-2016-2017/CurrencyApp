@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
-using CurrencyApp.UWP;
+using Janus.UWP;
 using Windows.Media.SpeechSynthesis;
 using Windows.UI.Xaml.Controls;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(TextToSpeech_UWP))]
-namespace CurrencyApp.UWP
+namespace Janus.UWP
 {
 	public class TextToSpeech_UWP : ITextToSpeech
 	{

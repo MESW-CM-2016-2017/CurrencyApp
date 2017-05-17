@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using SQLite;
-using CurrencyApp.Models;
+using Janus.Models;
 using System;
 
-namespace CurrencyApp.Data
+namespace Janus.Data
 {
     public class CurrencyDTODatabase
     {

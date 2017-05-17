@@ -2,7 +2,7 @@
 using SQLite;
 using System;
 
-namespace CurrencyApp.Models
+namespace Janus.Models
 {
     public class Wallet
     {

@@ -1,10 +1,10 @@
-﻿using CurrencyApp.API;
-using CurrencyApp.Models;
+﻿using Janus.API;
+using Janus.Models;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CurrencyApp.Views
+namespace Janus.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ConvertSingleWallet : ContentPage
@@ -12,20 +12,20 @@ namespace CurrencyApp.Views
         private Double oldQuantity;
         private Wallet Wallet;
 
-        public ConvertSingleWallet(Wallet currencyAppItem)
+        public ConvertSingleWallet(Wallet JanusItem)
         {
             InitializeComponent();
-            //var CurrencyAppItem = (Wallet)BindingContext;
+            //var JanusItem = (Wallet)BindingContext;
             setPicker();
             setInput();
             try
             {
-                oldQuantity = currencyAppItem.Quantity;
-                Wallet = currencyAppItem;
+                oldQuantity = JanusItem.Quantity;
+                Wallet = JanusItem;
                 foreach (String symbol in CurrencyDTO.top10Currencies)
                 {
                     //if (Picker.SelectedIndex != 0) Picker.SelectedIndex = 0;
-                    if (!currencyAppItem.Symbol.Contains(symbol)) Picker.Items.Add(symbol);
+                    if (!JanusItem.Symbol.Contains(symbol)) Picker.Items.Add(symbol);
                 }
 
             }
@@ -70,14 +70,14 @@ namespace CurrencyApp.Views
 
         async void OnConvertClicked(object sender, EventArgs e)
         {
-            Wallet currencyAppItem = (Wallet)BindingContext;
-            Double selectedQuantity = currencyAppItem.Quantity;
-            currencyAppItem.Quantity = oldQuantity;
+            Wallet JanusItem = (Wallet)BindingContext;
+            Double selectedQuantity = JanusItem.Quantity;
+            JanusItem.Quantity = oldQuantity;
             string toSymbol = (string)Picker.SelectedItem;
             // convert
             if (selectedQuantity > 0)
             {
-                await APIHandler.Convert(currencyAppItem.Symbol, toSymbol, currencyAppItem, selectedQuantity);
+                await APIHandler.Convert(JanusItem.Symbol, toSymbol, JanusItem, selectedQuantity);
                 await Navigation.PopToRootAsync();
             }
         }

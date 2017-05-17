@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="CurrencyApp.Android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="Janus.Android" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23" />
-	<application android:label="CurrencyApp" android:icon="@drawable/check2x" android:theme="@style/Theme.CurrencyApp"></application>
+	<application android:label="Janus" android:theme="@style/Theme.Janus" android:icon="@drawable/Icon"></application>
 </manifest>

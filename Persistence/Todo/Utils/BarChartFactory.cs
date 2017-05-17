@@ -1,9 +1,9 @@
-﻿using CurrencyApp.Models;
+﻿using Janus.Models;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace CurrencyApp.Utils
+namespace Janus.Utils
 {
     public class BarChartFactory
     {

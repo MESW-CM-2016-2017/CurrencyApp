@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using Xamarin.Forms;
-using CurrencyApp.Droid;
+using Janus.Droid;
 
 [assembly: Dependency(typeof(FileHelper))]
-namespace CurrencyApp.Droid
+namespace Janus.Droid
 {
 	public class FileHelper : IFileHelper
 	{

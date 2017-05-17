@@ -1,12 +1,12 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
-using CurrencyApp.API;
-using CurrencyApp.Models;
+using Janus.API;
+using Janus.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.IO;
-using CurrencyApp.Utils;
+using Janus.Utils;
 
 namespace TestingLab
 {

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using CurrencyApp.Models;
+using Janus.Models;
 using Newtonsoft.Json.Linq;
 using System.Net;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace CurrencyApp.API
+namespace Janus.API
 {
     public class APIHandler
     {

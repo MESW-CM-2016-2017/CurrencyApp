@@ -1,6 +1,6 @@
-﻿using CurrencyApp.API;
-using CurrencyApp.Models;
-using CurrencyApp.Utils;
+﻿using Janus.API;
+using Janus.Models;
+using Janus.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CurrencyApp.Views
+namespace Janus.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ConvertWalletPage : ContentPage

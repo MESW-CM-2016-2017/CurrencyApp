@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using Xamarin.Forms;
-using CurrencyApp.UWP;
+using Janus.UWP;
 using Windows.Storage;
 
 [assembly: Dependency(typeof(FileHelper))]
-namespace CurrencyApp.UWP
+namespace Janus.UWP
 {
 	public class FileHelper : IFileHelper
 	{

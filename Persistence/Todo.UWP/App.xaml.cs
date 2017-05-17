@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace CurrencyApp.UWP
+namespace Janus.UWP
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -60,7 +60,7 @@ namespace CurrencyApp.UWP
                 Xamarin.Forms.Forms.Init(e);
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //CurrencyApp: Load state from previously suspended application
+                    //Janus: Load state from previously suspended application
                 }
 
                 // Place the frame in the current Window
@@ -98,7 +98,7 @@ namespace CurrencyApp.UWP
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //CurrencyApp: Save application state and stop any background activity
+            //Janus: Save application state and stop any background activity
             deferral.Complete();
         }
     }

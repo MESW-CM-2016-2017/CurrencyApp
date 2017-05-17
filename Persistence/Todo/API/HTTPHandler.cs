@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 
-namespace CurrencyApp.API
+namespace Janus.API
 {
     class HTTPHandler : IHTTPHandler
     {

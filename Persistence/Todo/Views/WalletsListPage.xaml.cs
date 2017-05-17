@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using CurrencyApp.API;
-using CurrencyApp.Models;
-using CurrencyApp.Views;
+using Janus.API;
+using Janus.Models;
+using Janus.Views;
 using Xamarin.Forms;
 
-namespace CurrencyApp
+namespace Janus
 {
-    public partial class CurrencyAppListPage : ContentPage
+    public partial class JanusListPage : ContentPage
     {
 
         private List<Wallet> listOfWallets;
-        public CurrencyAppListPage()
+        public JanusListPage()
         {
             InitializeComponent();
         }
@@ -22,7 +22,7 @@ namespace CurrencyApp
             base.OnAppearing();
 
             // Reset the 'resume' id, since we just want to re-start here
-            ((App)App.Current).ResumeAtCurrencyAppId = -1;
+            ((App)App.Current).ResumeAtJanusId = -1;
             listOfWallets = await App.Database.GetItemsAsync();
             listView.ItemsSource = listOfWallets;
             refreshLabel.Text = "Last Update: " + await App.DatabaseCurrencies.GetLastUpdateTimeString();
@@ -31,7 +31,7 @@ namespace CurrencyApp
 
         async void OnItemAdded(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CurrencyAppItemPage
+            await Navigation.PushAsync(new JanusItemPage
             {
                 BindingContext = new Wallet()
             });
@@ -66,8 +66,8 @@ namespace CurrencyApp
 
         async void OnListItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            ((App)App.Current).ResumeAtCurrencyAppId = (e.SelectedItem as Wallet).ID;
-            Debug.WriteLine("setting ResumeAtCurrencyAppId = " + (e.SelectedItem as Wallet).ID);
+            ((App)App.Current).ResumeAtJanusId = (e.SelectedItem as Wallet).ID;
+            Debug.WriteLine("setting ResumeAtJanusId = " + (e.SelectedItem as Wallet).ID);
             Wallet w = (e.SelectedItem as Wallet);
 
 

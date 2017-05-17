@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CurrencyApp.Views.UpdateWallet">
+             x:Class="Janus.Views.UpdateWallet">
     <StackLayout Margin="20" VerticalOptions="StartAndExpand">
         <Label Text="Value" />
         <Entry Text="{Binding Quantity}" Keyboard="Numeric" />
         <Label Text="{Binding Symbol}"/>
         <Button Text="Update" Clicked="OnUpdateClicked" />
         <Button Text="Delete" Clicked="OnDeleteClicked" />
-        <Button Text="Cancel" Clicked="OnCancelClicked" />
-        <Button Text="Speak" Clicked="OnSpeakClicked" />
         <Button Text="Convert" Clicked="OnConvertClicked" />
+        <Button Text="Speak" Clicked="OnSpeakClicked" />
+        <Button Text="Cancel" Clicked="OnCancelClicked" />
+
     </StackLayout>
 </ContentPage>

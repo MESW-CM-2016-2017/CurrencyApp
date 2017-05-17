@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using SQLite;
-namespace CurrencyApp.Models
+namespace Janus.Models
 {
     public class CurrencyDTO
     {

@@ -1,4 +1,4 @@
-﻿namespace CurrencyApp.UWP
+﻿namespace Janus.UWP
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -8,7 +8,7 @@
         public MainPage()
         {
             this.InitializeComponent();
-            LoadApplication(new CurrencyApp.App());
+            LoadApplication(new Janus.App());
         }
     }
 }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CurrencyApp.Models;
+using Janus.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace CurrencyApp.Views
+namespace Janus.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class UpdateWallet : ContentPage
@@ -22,7 +22,7 @@ namespace CurrencyApp.Views
         {
             base.OnAppearing();
             // Reset the 'resume' id, since we just want to re-start here
-            ((App)App.Current).ResumeAtCurrencyAppId = -1;
+            ((App)App.Current).ResumeAtJanusId = -1;
         }
 
         async void OnUpdateClicked(object sender, EventArgs e)
@@ -35,8 +35,8 @@ namespace CurrencyApp.Views
 
         async void OnDeleteClicked(object sender, EventArgs e)
         {
-            var CurrencyAppItem = (Wallet)BindingContext;
-            await App.Database.DeleteItemAsync(CurrencyAppItem);
+            var JanusItem = (Wallet)BindingContext;
+            await App.Database.DeleteItemAsync(JanusItem);
             await Navigation.PopAsync();
         }
 
@@ -47,18 +47,18 @@ namespace CurrencyApp.Views
 
         void OnSpeakClicked(object sender, EventArgs e)
         {
-            var CurrencyAppItem = (Wallet)BindingContext;
-            DependencyService.Get<ITextToSpeech>().Speak(CurrencyAppItem.Quantity + " " + CurrencyAppItem.Symbol);
+            var JanusItem = (Wallet)BindingContext;
+            DependencyService.Get<ITextToSpeech>().Speak(JanusItem.Quantity + " " + JanusItem.Symbol);
         }
 
         async void OnConvertClicked(object sender, EventArgs e)
         {
-            var CurrencyAppItem = (Wallet)BindingContext;
+            var JanusItem = (Wallet)BindingContext;
 
             //redirect to ConvertSingleWallet
-            await Navigation.PushAsync(new ConvertSingleWallet(CurrencyAppItem)
+            await Navigation.PushAsync(new ConvertSingleWallet(JanusItem)
             {
-                BindingContext = CurrencyAppItem as Wallet,
+                BindingContext = JanusItem as Wallet,
             });
         }
     }
