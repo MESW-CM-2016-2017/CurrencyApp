@@ -20,7 +20,7 @@ namespace Janus
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-
+            updateCurrencies();
             // Reset the 'resume' id, since we just want to re-start here
             ((App)App.Current).ResumeAtJanusId = -1;
             listOfWallets = await App.Database.GetItemsAsync();
@@ -35,6 +35,20 @@ namespace Janus
             {
                 BindingContext = new Wallet()
             });
+        }
+
+        void updateCurrencies()
+        {
+            try
+            {
+                APIHandler api = new APIHandler();
+                refreshLabel.Text = api.UpdateCurrencies();
+            }
+            catch (Exception exception)
+            {
+                // show dialog
+                //await DisplayAlert("Warning", "The API is currently unavailable. Please Try Again", "OK");
+            }
         }
 
         async void OnRefresh(object sender, EventArgs e)
@@ -77,12 +91,21 @@ namespace Janus
             });
 
         }
-      
+
         async void OnConvertWallet(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ConvertWalletPage(listOfWallets)
+            if (listOfWallets.Capacity != 0)
             {
-            });
+                await Navigation.PushAsync(new ConvertWalletPage(listOfWallets)
+                {
+
+                });
+            }
+            else
+            {
+                await DisplayAlert("Warning", "There are no wallets to convert.", "OK");
+            }
+
         }
 
     }
